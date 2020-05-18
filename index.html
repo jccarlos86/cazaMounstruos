@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="resources/fontAwesome/all.min.css">
+    <title>Caza Mounstruos</title>
+</head>
+<body class="bg-dark">
+    <div class="container-fluid">
+        <div id="gameControls" class="row">
+            <div class="col-sm-12">
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="facil" name="nivelesJuego" class="custom-control-input nivel" value="0">
+                    <label class="custom-control-label text-success" for="facil">Facil</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="normal" name="nivelesJuego" class="custom-control-input nivel" checked value="1">
+                    <label class="custom-control-label text-primary" for="normal">Normal</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="dificil" name="nivelesJuego" class="custom-control-input nivel" value="2">
+                    <label class="custom-control-label text-warning" for="dificil">Dificil</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="experto" name="nivelesJuego" class="custom-control-input nivel" value="3">
+                    <label class="custom-control-label text-danger" for="experto">Experto</label>
+                </div>
+                <button id="btnTopTen" type="button" class="btn btn-success rounded-circle mr-2" data-toggle="modal" data-target="#modalTopTen">
+                    <i class="fas fa-award"></i>
+                </button>
+                <button id="iniciar" type="button" class="btn btn-primary rounded-circle">
+                    <i class="far fa-play-circle"></i>
+                </button>
+                <button id="detener" type="button" class="btn btn-danger rounded-circle">
+                    <i class="far fa-stop-circle text-stop"></i>
+                </button>
+                <br>
+                <span id="puntos" class="text-white h1">Puntos: 0</span>
+                <span id="reloj" class="h1 pl-3 pr-3 text-white"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="campo">
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- modal puntaje -->
+    <div class="modal fade" id="modalTopTen" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalTopTenLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTopTenLabel">Top Ten</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul id="topten" class="list-group">
+                        <li class="list-group-item active">Mejores puntajes</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal guardar puntos -->
+    <div class="modal fade" id="modalPartida" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="modalPartidaLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalPartidaLabel">Guarda tu partida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="navbar-nav">
+                                <a href="#" class="nav-link nav-item prevent-default">
+                                    <span class="text-success">Aciertos</span>
+                                    <span id="pillAciertos" class="badge badge-light"></span>
+                                </a>
+                                <a href="#" class="nav-link nav-item prevent-default">
+                                    <span class="text-danger">Errores</span>
+                                    <span id="pillErrores" class="badge badge-light"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="formGroupExampleInput2">Escribe tu nombre</label>
+                          <input type="text" class="form-control" id="nombre" placeholder="Escribe tu nombre">
+                        </div>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" id="guardarPartida" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="resources/jquery/jquery-3.2.1.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
+    <script src="funciones.js?v=150520201115"></script>
+</body>
+</html>
