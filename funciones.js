@@ -107,8 +107,8 @@ function crearCampo(){
     $("#campo tbody").html(tbl);
     //$("td").width(450);
     //$("td").height(100);
-    $("td").width(Math.floor(data.pantalla.campo.ancho / data.campo.columnas));
-    $("td").height(Math.floor((data.pantalla.campo.alto - data.pantalla.controles.alto) / data.campo.filas));
+    $("td").width(Math.floor(data.pantalla.campo.ancho / data.campo.columnas) - 2);
+    $("td").height(Math.floor((data.pantalla.campo.alto - data.pantalla.controles.alto) / data.campo.filas) - 2);
 }
 
 function fondo(){
@@ -120,7 +120,8 @@ function fondo(){
 
 function ubicarMounstruos(intervalo){
     data.intervalos.monsterInterval = setInterval(() => {
-        $("td").html("");
+        //$("td").html("");
+        $(".monster-touch").slideUp();
         var row = Math.round(Math.random() * (data.campo.filas - 1) + 1);
         var col = Math.round(Math.random() * (data.campo.columnas - 1) + 1);
         var ml = data.monstersName.length - 1;
@@ -309,24 +310,35 @@ $("#detener").click(function(){
     clearInterval(data.intervalos.relojInterval);
     clearInterval(data.intervalos.monsterInterval);
     data.intervalos.tiempo.minutos = 1;
-    data.intervalos.tiempo.segundos = 60;
+    data.intervalos.tiempo.segundos = 59;
     $("#reloj").html("00:00");
-    //$(".nivel").attr("disabled", false);
     diabledControls(false);
 });
 
 //contador de caceria
 $("tbody").on("click",".monster-touch", function(){
     if($("#reloj").html() != "00:00"){
+        $(this).removeClass("monster-touch");
         if($(this).data("puntos") == "quitar"){
+            $(this).removeData("puntos");
             data.puntaje.aciertos--;
             data.puntaje.fallos++;
+            $(this).addClass("animate hinge");
+            $(this).on("animationend", function(){
+                console.log("quitar mostro quita puntos")
+                $(this).remove();
+            });
         }else{
+            $(this).removeData("puntos");
             data.puntaje.aciertos++;
+            $(this).addClass("animate bounceOut");
+            $(this).on("animationend", function(){
+                console.log("quitar mostro");
+                $(this).remove();
+            });
         }
-        //$("#puntos").html("Puntos:  " + data.puntaje.aciertos);
+        $(this).removeData("puntos");
         mostrarPuntos(data.puntaje.aciertos);
-        $(this).hide();
     }
 });
 
